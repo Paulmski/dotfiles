@@ -1,0 +1,21 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Sensitive files
+*.swp
+*.swo
+*~
+.env
+.env.local
+
+# Tmux
+.tmux_sessions
+
+# Neovim
+.netrwhist
+nvim/plugin/packer_compiled.lua
+
+# Shell history
+.bash_history
+.zsh_history
