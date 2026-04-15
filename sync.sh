@@ -18,6 +18,11 @@ cd "$DOTFILES_DIR"
 echo "Copying Neovim configs..."
 cp -r ~/.config/nvim/* nvim/ 2>/dev/null || echo "  ⚠ Could not copy nvim configs"
 
+# Copy Neovim spell files (custom dictionary)
+echo "Copying Neovim spell files..."
+mkdir -p nvim/spell
+cp ~/.local/share/nvim/site/spell/*.add nvim/spell/ 2>/dev/null || echo "  ⚠ No custom spell files found (this is optional)"
+
 # Copy Tmux config (excluding plugins which are git submodules)
 echo "Copying Tmux config..."
 cp ~/.tmux.conf tmux/.tmux.conf 2>/dev/null || echo "  ⚠ Could not copy .tmux.conf"
