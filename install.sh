@@ -28,11 +28,31 @@ symlink_file() {
     echo "  ✓ Symlinked $target"
 }
 
+# Function to copy files (for spell files that shouldn't be symlinked)
+copy_files() {
+    local source=$1
+    local target=$2
+    
+    if [ -d "$source" ]; then
+        mkdir -p "$target"
+        cp -r "$source"/* "$target/" 2>/dev/null || true
+        echo "  ✓ Copied files to $target"
+    fi
+}
+
 # Install Neovim config
 if [ -d "$DOTFILES_DIR/nvim" ]; then
     echo ""
     echo "Installing Neovim config..."
     symlink_file "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+fi
+
+# Install Neovim spell files (copy, don't symlink)
+if [ -d "$DOTFILES_DIR/nvim/spell" ]; then
+    echo ""
+    echo "Installing Neovim spell files..."
+    mkdir -p "$HOME/.local/share/nvim/site/spell"
+    copy_files "$DOTFILES_DIR/nvim/spell" "$HOME/.local/share/nvim/site/spell"
 fi
 
 # Install Tmux config
