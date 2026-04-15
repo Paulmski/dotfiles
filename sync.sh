@@ -18,10 +18,10 @@ cd "$DOTFILES_DIR"
 echo "Copying Neovim configs..."
 cp -r ~/.config/nvim/* nvim/ 2>/dev/null || echo "  ⚠ Could not copy nvim configs"
 
-# Copy Tmux configs
-echo "Copying Tmux configs..."
-cp -r ~/.tmux/* tmux/ 2>/dev/null || echo "  ⚠ Could not copy tmux plugins"
+# Copy Tmux config (excluding plugins which are git submodules)
+echo "Copying Tmux config..."
 cp ~/.tmux.conf tmux/.tmux.conf 2>/dev/null || echo "  ⚠ Could not copy .tmux.conf"
+# Note: tmux/plugins are managed as git submodules, so we don't copy them
 
 # Copy Shell configs
 echo "Copying Shell configs..."
